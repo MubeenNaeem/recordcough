@@ -8,7 +8,7 @@ void showSnackBar(context, text) {
       backgroundColor: MyColors.prime,
       content: Text(
         text,
-        style: GoogleFonts.poppins(),
+        style: GoogleFonts.nunitoSans(),
       ),
     ),
   );

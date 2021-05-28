@@ -41,7 +41,7 @@ class _RegisterState extends State<Register> {
                 children: [
                   Text(
                     'Create Username',
-                    style: GoogleFonts.poppins(
+                    style: GoogleFonts.nunitoSans(
                       fontWeight: FontWeight.w600,
                       fontSize: 24,
                     ),

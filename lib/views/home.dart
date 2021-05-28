@@ -47,6 +47,15 @@ class _HomeState extends State<Home> {
     );
   }
 
+  bool isRecording() {
+    int hour = DateTime.now().hour;
+    print(hour);
+    if (hour >= 0 && hour <= 6) {
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -70,13 +79,13 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Next Recording',
+                isRecording() ? 'Recording Now' : 'Next Recording',
                 style: TextStyle(
                   fontSize: 28,
                 ),
               ),
               Text(
-                'Today at 12 AM',
+                isRecording() ? 'Until 6:00 Am' : 'Today at 12 AM',
                 style: TextStyle(
                   fontSize: 20,
                 ),

@@ -20,14 +20,14 @@ class MyTextField extends StatelessWidget {
         border: Border.all(color: Colors.grey, width: 0.3),
       ),
       child: TextField(
-        style: GoogleFonts.poppins(),
+        style: GoogleFonts.nunitoSans(),
         controller: controller,
         cursorColor: MyColors.black,
         decoration: InputDecoration(
           border: InputBorder.none,
           contentPadding: EdgeInsets.all(14),
           hintText: hint,
-          hintStyle: GoogleFonts.poppins(fontSize: 15),
+          hintStyle: GoogleFonts.nunitoSans(fontSize: 15),
         ),
       ),
     );

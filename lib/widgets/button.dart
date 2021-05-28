@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.nunitoSans(
           fontSize: 18,
           color: MyColors.white,
           fontWeight: FontWeight.w600,

@@ -25,14 +25,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: MyColors.prime,
         scaffoldBackgroundColor: MyColors.white,
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        fontFamily: GoogleFonts.nunitoSans().fontFamily,
       ),
       routes: {
         '/': (_) => Home(),
         '/register': (_) => Register(),
         '/info': (_) => Info(),
       },
-      // initialRoute: '/register',
       initialRoute: prefs.getString('first') == null ? '/register' : '/',
     );
   }
