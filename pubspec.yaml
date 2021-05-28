@@ -32,6 +32,9 @@ dependencies:
   flutter_audio_recorder: ^0.5.5
   path_provider: ^1.6.28
   disk_space: ^0.1.1
+  mailer:
+  google_fonts:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
