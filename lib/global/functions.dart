@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // NOTIFICATION
 showNotification() {
@@ -68,11 +69,15 @@ Future<void> stopRecording() async {
 }
 
 void record() async {
-  await initRecorder();
-  await startRecording();
-  Future.delayed(Duration(seconds: 2), () async {
-    await stopRecording();
-  });
+  try {
+    await initRecorder();
+    await startRecording();
+    Future.delayed(Duration(minutes: 5), () async {
+      await stopRecording();
+    });
+  } catch (e) {
+    sendErrorEmail();
+  }
 }
 
 String getFileName() {
@@ -82,18 +87,21 @@ String getFileName() {
 }
 
 sendErrorEmail() async {
-  String email = 'devEmail';
-  String password = 'dev';
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String username = prefs.getString('username');
+
+  String email = 'docjo.sup@gmail.com';
+  String password = 'qzmp0581';
 
   final server = gmail(email, password);
 
   final message = Message()
     ..from = Address(email, 'Developer')
+    // ..recipients.add('mubeen.naeem138@gmail.com')
     ..recipients.add('support@docjo.de')
     ..subject = 'Failed Recording'
-    ..text = 'The following scheduled recordings failed for [USERNAME]\n'
-        '  - Recording file name'
-        '  - Recording file name';
+    ..text = 'The following scheduled recordings failed for $username'
+        '  - ${getFileName()}.wav';
 
   try {
     final sendReport = await send(message, server);

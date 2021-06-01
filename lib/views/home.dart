@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
     Future.delayed(
       Duration(milliseconds: 100),
       () {
-        // initializeTask();
+        initializeTask();
       },
     );
     super.initState();
@@ -40,17 +40,19 @@ class _HomeState extends State<Home> {
 
   void initializeTask() async {
     print('initializeTask STARTED........');
-    await AndroidAlarmManager.oneShot(
-      Duration(seconds: 5),
+    await AndroidAlarmManager.periodic(
+      Duration(days: 1),
       12,
       runTask,
+      startAt: DateTime(2021, 6, 1, 0, 0, 0),
+      wakeup: true,
+      rescheduleOnReboot: true,
     );
   }
 
   bool isRecording() {
     int hour = DateTime.now().hour;
-    print(hour);
-    if (hour >= 0 && hour <= 6) {
+    if (hour >= 0 && hour <= 5) {
       return true;
     }
     return false;

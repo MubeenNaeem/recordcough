@@ -28,11 +28,12 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.nunitoSans().fontFamily,
       ),
       routes: {
-        '/': (_) => Home(),
+        '/': (_) => Container(),
         '/register': (_) => Register(),
+        '/home': (_) => Home(),
         '/info': (_) => Info(),
       },
-      initialRoute: prefs.getString('first') == null ? '/register' : '/',
+      initialRoute: prefs.getString('first') == null ? '/register' : '/home',
     );
   }
 }
