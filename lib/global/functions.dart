@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_ex/path_provider_ex.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // NOTIFICATION
@@ -50,6 +51,8 @@ FlutterAudioRecorder audioRecorder;
 
 Future<void> initRecorder() async {
   Directory appDirectory = await getExternalStorageDirectory();
+  // List<StorageInfo> storageInfo = await PathProviderEx.getStorageInfo();
+  // var root = storageInfo[0].rootDir;
   String filePath = appDirectory.path + '/' + getFileName() + '.wav';
 
   audioRecorder = FlutterAudioRecorder(
@@ -72,8 +75,9 @@ void record() async {
   try {
     await initRecorder();
     await startRecording();
-    Future.delayed(Duration(minutes: 5), () async {
+    Future.delayed(Duration(minutes: 1), () async {
       await stopRecording();
+      AwesomeNotifications().removeChannel('basic');
     });
   } catch (e) {
     sendErrorEmail();
@@ -87,6 +91,8 @@ String getFileName() {
 }
 
 sendErrorEmail() async {
+  AwesomeNotifications().removeChannel('basic');
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String username = prefs.getString('username');
 

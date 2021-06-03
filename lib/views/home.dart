@@ -1,8 +1,9 @@
-import 'package:android_alarm_manager/android_alarm_manager.dart';
-import 'package:disk_space/disk_space.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:recordcough/global/functions.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_ex/path_provider_ex.dart';
 import 'package:recordcough/global/global.dart';
 
 class Home extends StatefulWidget {
@@ -10,52 +11,18 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-runTask(int i) async {
-  print('$i');
-  if (await spaceAvailable()) {
-    showNotification();
-    record();
-  } else {
-    sendErrorEmail();
-  }
-}
-
-// CHECK AVAILABLE SPACE
-Future<bool> spaceAvailable() async {
-  bool available = (await (DiskSpace.getFreeDiskSpace) / 1024) >= 2;
-  return available;
-}
-
 class _HomeState extends State<Home> {
-  @override
-  void initState() {
-    Future.delayed(
-      Duration(milliseconds: 100),
-      () {
-        initializeTask();
-      },
-    );
-    super.initState();
-  }
-
-  void initializeTask() async {
-    print('initializeTask STARTED........');
-    await AndroidAlarmManager.periodic(
-      Duration(days: 1),
-      12,
-      runTask,
-      startAt: DateTime(2021, 6, 1, 0, 0, 0),
-      wakeup: true,
-      rescheduleOnReboot: true,
-    );
-  }
-
   bool isRecording() {
     int hour = DateTime.now().hour;
-    if (hour >= 0 && hour <= 5) {
+    if (hour >= 0 && hour < 6) {
       return true;
     }
     return false;
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

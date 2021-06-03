@@ -31,6 +31,7 @@ dependencies:
   awesome_notifications: ^0.0.6+7
   flutter_audio_recorder: ^0.5.5
   path_provider: ^1.6.28
+  path_provider_ex: ^1.0.1
   disk_space: ^0.1.1
   mailer:
   google_fonts:

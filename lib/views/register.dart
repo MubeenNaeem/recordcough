@@ -22,7 +22,7 @@ class _RegisterState extends State<Register> {
     if (username != '') {
       prefs.setString('first', 'no');
       prefs.setString('username', username);
-      navigate(context, '/home');
+      navigate(context, '/initialize');
     } else {
       showSnackBar(context, 'Enter Username');
     }
