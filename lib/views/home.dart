@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_audio_recorder/flutter_audio_recorder.dart';
 import 'package:recordcough/global/global.dart';
+import 'package:recordcough/widgets/button.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,11 +16,6 @@ class _HomeState extends State<Home> {
       return true;
     }
     return false;
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -40,22 +37,31 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                isRecording() ? 'Recording Now' : 'Next Recording',
-                style: TextStyle(
-                  fontSize: 28,
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Text(
+                //   isRecording() ? 'Recording Now' : 'Next Recording',
+                //   style: TextStyle(
+                //     fontSize: 28,
+                //   ),
+                // ),
+                // Text(
+                //   isRecording() ? 'Until 6:00 Am' : 'Today at 12 AM',
+                //   style: TextStyle(
+                //     fontSize: 20,
+                //   ),
+                // ),
+                Button(
+                  text: 'Start Recording',
+                  onPressed: () {
+                    navigate(context, '/recording');
+                  },
                 ),
-              ),
-              Text(
-                isRecording() ? 'Until 6:00 Am' : 'Today at 12 AM',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

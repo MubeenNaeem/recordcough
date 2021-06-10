@@ -37,6 +37,7 @@ dependencies:
   google_fonts:
   shared_preferences:
   permission_handler:
+  wakelock: ^0.5.2
 
 dev_dependencies:
   flutter_test:
